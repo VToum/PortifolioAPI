@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PortifolioWeb</title>
+
+    <link rel="stylesheet" href="~/assets/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="~/assets/css/meyawo.css">
+    <link rel="stylesheet" href="~/assets/css/meyawo.css" asp-append-version="true" />
+
+</head>
+
+    @RenderBody()
+    @await RenderSectionAsync("Scripts", required: false)
+
+</html>
+
+
+<script src="~/assets/vendors/jquery/jquery-3.4.1.js"></script>
+<script src="~/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+<script src="~/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+<script src="~/assets/js/meyawo.js"></script>
