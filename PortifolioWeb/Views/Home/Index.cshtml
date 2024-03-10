@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model PortifolioWeb.Models.Dto.ContactDto;
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -67,7 +69,7 @@
             <!-- about wrapper -->
             <div class="about">
                 <div class="about-img-holder">
-                    <img src="~/assets/imgs/avatar2.png" class="about-img"
+                    <img src="~/assets/imgs/avatar2.png" class="about-img" style="border-radius: 5px"
                          alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
                 </div>
                 <div class="about-caption">
@@ -346,16 +348,16 @@
             <p class="section-subtitle">Como você pode se comunicar?</p>
             <h6 class="section-title mb-5">Fale Comigo</h6>
             <!-- contact form -->
-            <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
-                <div class="form-row">
+            <form asp-action="IndexCreate" class="contact-form col-md-10 col-lg-8 m-auto">
+                <div  class="form-row">
                     <div class="form-group col-sm-6">
-                        <input type="text" size="50" class="form-control" placeholder="Seu nome" required>
+                        <input asp-for="Nome" type="text" size="50" class="form-control" placeholder="Seu nome" required>
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" placeholder="Seu Email" requried>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Seu Email" requried>
                     </div>
                     <div class="form-group col-sm-12">
-                        <textarea name="comment" id="comment" rows="6" class="form-control"
+                        <textarea asp-for="Message" name="comment" id="comment" rows="6" class="form-control"
                                   placeholder="Escreva algo"></textarea>
                     </div>
                     <div class="form-group col-sm-12 mt-3">
@@ -379,8 +381,20 @@
         </footer>
     </div>
 
-
-
 </body>
 
+
 </html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@{
+    if (!String.IsNullOrEmpty(ViewBag.AlertMessage))
+    {
+        <script type="text/javascript">
+            alert("@ViewBag.AlertMessage");
+        </script>
+    }
+}

@@ -6,29 +6,29 @@ using PortifolioAPI.Repository.IRepository;
 
 namespace PortifolioAPI.Controllers
 {
-    [Route("api/PortifolioAPI")]
+    [Route("api/ContactMe")]
     [ApiController]
     public class ContactMeController : ControllerBase
     {
-        private readonly IContactRepository _dbContactMe;
+        private readonly IContactRepository _dbContact;
         private readonly IMapper _mapper;
         protected APIResponse _response;
 
-        public ContactMeController(IContactRepository dbContactMe, IMapper mapper)
+        public ContactMeController(IContactRepository dbContact, IMapper mapper)
         {
-            _dbContactMe = dbContactMe;
+            _dbContact = dbContact;
             _mapper = mapper;
             this._response = new();
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateContact([FromBody] ContactDto createDto) 
+        public async Task<ActionResult<APIResponse>> IndexPortifolio([FromBody] ContactDto createDto) 
         {
             if (createDto == null || createDto.Id > 0)
             {
                 return BadRequest();
             }
-            if (await _dbContactMe.GetIdAsync(c => c.Email.ToLower() == createDto.Email.ToLower()) != null)
+            if (await _dbContact.GetIdAsync(c => c.Email.ToLower() == createDto.Email.ToLower()) != null)
             {
                 ModelState.AddModelError("CustomErro", "Email já existe");
                 
@@ -37,8 +37,8 @@ namespace PortifolioAPI.Controllers
 
             Contact contact = _mapper.Map<Contact>(createDto);
 
-            await _dbContactMe.CreateContactAsync(contact);
-            await _dbContactMe.SaveAsync();
+            await _dbContact.CreateContactAsync(contact);
+            await _dbContact.SaveAsync();
 
             _response.Result = _mapper.Map<Contact>(contact);
             _response.StatusCode = System.Net.HttpStatusCode.Created;

@@ -12,8 +12,8 @@ namespace PortifolioWeb.Service
 
         public BaseService(IHttpClientFactory httpClient)
         {
-            this.httpClient = httpClient;
             responseModel = new();
+            this.httpClient = httpClient;
         }
 
         public async Task<T> SendAsync<T>(APIRequest apiRequest)
@@ -33,12 +33,6 @@ namespace PortifolioWeb.Service
                 {
                     case SD.ApiType.Post:
                         message.Method = HttpMethod.Post;
-                        break;
-                    case SD.ApiType.Put:
-                        message.Method = HttpMethod.Put;
-                        break;
-                    case SD.ApiType.Delete:
-                        message.Method = HttpMethod.Delete;
                         break;
                     default:
                         message.Method = HttpMethod.Get;

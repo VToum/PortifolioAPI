@@ -21,7 +21,7 @@ namespace PortifolioWeb.Service
             {
                 ApiType = SD.ApiType.Post,
                 Data = dto,
-                Url = PortifolioUrl + "api/ContactMe/"
+                Url = PortifolioUrl + "/api/ContactMe/"
             });
         }
 
@@ -29,8 +29,8 @@ namespace PortifolioWeb.Service
         {
             return SendAsync<T>(new APIRequest()
             {
-                ApiType = SD.ApiType.Post,
-                Url = PortifolioUrl + "api/ContactMe/"
+                ApiType = SD.ApiType.Get,
+                Url = PortifolioUrl + "/api/ContactMe/"
             });
         }
 
@@ -38,8 +38,8 @@ namespace PortifolioWeb.Service
         {
             return SendAsync<T>(new APIRequest()
             {
-                ApiType = SD.ApiType.Post,
-                Url = PortifolioUrl + "api/ContactMe/" + id
+                ApiType = SD.ApiType.Get,
+                Url = PortifolioUrl + "api//api/ContactMe/" + id
             });
         }
     }
